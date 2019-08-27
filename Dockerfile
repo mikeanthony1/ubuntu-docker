@@ -8,6 +8,7 @@ FROM ubuntu:latest
 RUN apt-get update && yes|apt-get upgrade && apt install -y vim
 
 #Turn off all Syntax highlighting
-#TODO Figure out this configuration RUN /bin/bash -c unalias ls
 WORKDIR /root
-RUN touch /root/.vimrc && echo "syntax off" >> /root/.vimrc 
+RUN sed -i 's/alias ls/#alias ls/g' .bashrc
+RUN touch /root/.vimrc && echo "syntax off" >> /root/.vimrc dock
+CMD ["bash"]
